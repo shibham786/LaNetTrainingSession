@@ -682,10 +682,10 @@ stringMultiplication("123456789", "987654321");
 // Input: [1,7,1,1,1,1]
 // Output: 2
 
-const ArrayChallenge = (arr) => {
-  max = Math.max(...arr);
-  arr.filter((count) => {});
-};   
+// const ArrayChallenge = (arr) => {
+//   max = Math.max(...arr);
+//   arr.filter((count) => {});
+// };
 // ArrayChallenge([2, 3, 5, 6, 1, 6]);
 // ArrayChallenge([1, 2, 3, 4, 2]);
 // ArrayChallenge([1, 7, 1, 1, 1, 1]);
