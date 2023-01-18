@@ -371,9 +371,10 @@
 //   romam.forEach((element) => {
 //     num += translations[element];
 //   });
+//   return num;
 //   console.log(`${num} = ${res}`);
 // };
-// romanToInt("CMXCIX");
+// romanToInt("MMMM");
 
 //*************************intToRoman*************************
 //   const intToRoman = (nums) => {
@@ -656,11 +657,11 @@
 // };
 // longestValidParentheses("(())() ");
 
-const stringMultiplication = (num1, num2) => {
-  return (BigInt(num1) * BigInt(num2)).toString();
-};
+// const stringMultiplication = (num1, num2) => {
+//   return (BigInt(num1) * BigInt(num2)).toString();
+// };
 
-stringMultiplication("123456789", "987654321");
+// stringMultiplication("123456789", "987654321");
 // stringMultiplication("21", "9");
 // stringMultiplication("9", "21");
 // stringMultiplication("111", "2");
@@ -727,3 +728,134 @@ stringMultiplication("123456789", "987654321");
 // console.log(ArrayChallenge(["1", "22", "32", "4444", "11"]));
 // console.log(ArrayChallenge(["ac", "ccc", "vv", "4444", "11"]));
 // ArrayChallenge(["11", "2", "123", "2", "21"]);
+
+//*****************************IntToRoman*****************************
+
+// const IntToRoman = (input) => {
+//   len = String(input).length;
+//   input = String(input);
+//   ansStack = "";
+//   while (len != 0) {
+//     ans = input[0] * Math.pow(10, len - 1);
+//     while (ans != 0) {
+//       if (String(ans).length == 4) {
+//         ansStack += "M";
+//         ans -= 1000;
+//       } else if (String(ans).length == 3) {
+//         if (ans >= 500) {
+//           ansStack += "D";
+//           ans -= 500;
+//         } else {
+//           ansStack += "C";
+//           ans -= 100;
+//         }
+//       } else if (String(ans).length == 2) {
+//         if (ans >= 50) {
+//           ansStack += "L";
+//           ans -= 50;
+//         } else {
+//           ansStack += "X";
+//           ans -= 10;
+//         }
+//       } else if (String(ans).length == 1) {
+//         if (ans >= 5) {
+//           ansStack += "V";
+//           ans -= 5;
+//         } else {
+//           ansStack += "I";
+//           ans -= 1;
+//         }
+//       } else {
+//         ans = 0;
+//       }
+//     }
+//     input = String(input).replace(input[0], "");
+//     len--;
+//   }
+//   ansStack = ansStack.replace("VIIII", "IX").replace("IIII", "IV");
+//   ansStack = ansStack.replace("LXXXX", "XC").replace("XXXX", "XL");
+//   ansStack = ansStack.replace("DCCCC", "CM").replace("CCCC", "CD");
+//   return ansStack;
+// };
+// console.log(IntToRoman(1900));
+// console.log(IntToRoman(1990));
+// console.log(IntToRoman(3590));
+
+const numToWord = (input) => {
+  ansStack = "";
+  single = {
+    1: "One",
+    2: "Two",
+    3: "Three",
+    4: "Four",
+    5: "Five",
+    6: "Six",
+    7: "Seven",
+    8: "Eight",
+    9: "Nine",
+    10: "Ten",
+    11: "Eleven",
+    12: "Twelve",
+    13: "Thriteen",
+    14: "Fourteen",
+    15: "Fifteen",
+    16: "Sixteen",
+    17: "Seventeen",
+    18: "Eighteen",
+    19: "Nineteen",
+    20: "Twenty",
+    30: "Thirty",
+    40: "Forty",
+    50: "Fifty",
+    60: "Sixty",
+    70: "Seventy",
+    80: "Eighty",
+    90: "Ninty",
+    100: "Hundred",
+  };
+  tens = {
+    1000: "Thousand",
+    1000000: "Million",
+    1000000000: "Billion",
+    1000000000000: "Trillion",
+  };
+  ansStack = "";
+  if (single[input]) {
+    console.log(single[input]);
+  } else {
+    arr = [];
+    temp = [];
+    str = [...String(input)].reverse();
+    str.forEach((element) => {
+      if (temp.length != 3) {
+        temp.push(element);
+        console.log(temp);
+      } else {
+        arr.push(temp.reverse());
+        temp = [];
+        temp.push(element);
+      }
+    });
+    arr.push(temp.reverse());
+    arr = arr.reverse();
+    numLen = arr.length;
+    console.log(arr);
+    arr.forEach((element) => {
+      if (numLen == 2) {
+        str = element.join("");
+        if (single[Number(str)]) {
+          ansStack = ansStack + " " + single[Number(str)] + " ";
+        } else {
+          if (str.length == 3) {
+            ansStack = ansStack + single[element[0]] + tens[100];
+          } else if (str.length == 2) {
+            ansStack =
+              ansStack + single[element[0] * 10] + "-" + single[element[1]];
+          }
+        }
+      }
+    });
+    console.log(ansStack);
+  }
+};
+numToWord(22340);
